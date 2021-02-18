@@ -1,6 +1,6 @@
-## <span style="color: rgb(59, 59, 59);;">Getting Started with Text2Sound Node App</span>
-<hr>
-##### text2sound armazena comentários que posteriormente podem  ser convertidos em fala
+## <span style="color: rgb(59, 59, 59);">Getting Started with Text2Sound Node App</span>
+
+text2sound armazena comentários que posteriormente podem  ser convertidos em fala
 - Os comentários são armazenados em um banco de dados remoto. 
 - Somente os 8 comentários mais recentes são armazenados.
 
