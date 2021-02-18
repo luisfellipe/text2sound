@@ -3,6 +3,7 @@
 text2sound armazena comentários que posteriormente podem  ser convertidos em fala
 - Os comentários são armazenados em um banco de dados remoto. 
 - Somente os 8 comentários mais recentes são armazenados.
+ 
 
 ![Interface do text2sound](./assets/interface.png)
 
@@ -10,19 +11,19 @@ text2sound armazena comentários que posteriormente podem  ser convertidos em fa
 ##### Instalação na máquina local
 No terminlal
 1. clonar o repositório
-```shell
+````shell
 git clone https://github.com/luisfellipe/text2sound.git
-```
+````
 2. Abrir a pasta text2sound e instalar as dependências
-```shell
+````shell
 cd text2sound/src
 npm install
-```
+````
 3. Apos instaladas as dependências execute a aplicação
  <h5>
-```shell 
+````shell 
 npm start
-```
+````
 </h5> 
 4. No navegador acesse a aplicação pelo url
 ```http://localhost:8082```.
@@ -35,7 +36,7 @@ const env = {
 }
 module.exports = env;
 ```
-
+O text2sound Utiliza banco de dados MySQL Remoto
 As configurações para acesso ao banco de dados estão no arquivo `./db/config.js`.
 ````node
 // mysql://b55cc638e160a7:90e79e27@us-cdbr-east-03.cleardb.com/heroku_a249664013e9f5c?reconnect=true
