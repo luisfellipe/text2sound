@@ -1,0 +1,72 @@
+@charset "UTF-8";
+html, body, ul, ol, li, form, fieldset, legend {
+    margin: 0;
+    padding: 0;
+}
+li { list-style: none; }
+body{
+    background-color: rgba(245, 245, 245, 1);
+}
+input, textarea, select
+{
+    font-size: 110%;
+    line-height: 1.1;
+}
+
+div[id="comment_area"]{
+    margin-right: 200x;
+}
+div[id="list_comments"]{
+    margin-top: 36px;
+    color: #878787ff;
+    margin-left: -20px;
+}
+div[id="comments"]{
+    border-left: 2px solid gray;
+    margin-left:  50px;
+    padding-left: 100px;
+    color: #878787ff;
+}
+
+textarea[id="comment_text"]{
+    width: 500px;
+    height: 162px;
+    margin-top: 6px;
+}
+
+#btn-cadastrar{
+    display: block;
+    width: 500px;
+    height: 40px;
+    margin-top: 10px;
+    border: 0px;
+    border-radius: 5px;
+    color: rgb(59, 59, 59);
+    font-weight: bold;
+    font-size: 12pt;
+    background-color: rgba(218, 218, 218, 1);
+    
+}
+
+label{
+    color:rgb(59, 59, 59);
+}
+
+/*************************************************/
+
+label[id="tile"]{
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+
+input[class="btn-ouvir"]{
+    width: 80px;
+    height: 25px;
+    background-color: rgba(218, 218, 218, 1);
+    border-radius: 5px;
+    color: rgb(59, 59, 59);
+    font-weight: bold;
+    font-size: 10pt;
+    border: 0px;
+}
