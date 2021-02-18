@@ -11,11 +11,11 @@ text2sound armazena comentários que posteriormente podem  ser convertidos em fa
 No terminlal
 1. clonar o repositório
 ```shell
-git clone https://github.com/luisfellipe/text2sound.git`
+git clone https://github.com/luisfellipe/text2sound.git
 ```
 2. Abrir a pasta text2sound e instalar as dependências
 ```shell
-cd text2sound
+cd text2sound/src
 npm install
 ```
 3. Apos instaladas as dependências execute a aplicação
