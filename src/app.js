@@ -40,7 +40,7 @@ app.post('/toaudio', function(req, res){
     fs.unlinkSync(env.audio.file);
       console.log("File is deleted.");
     } catch (error) {
-    console.log(error);
+    console.log("old file not exist");
   }
   speech.getAudio(req.body.text);
   res.send(env.audio.file);// return the path of the file in frontend };
