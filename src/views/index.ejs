@@ -87,7 +87,7 @@
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-            
+              getComments();
               console.log("OK! status "+ this.status);
           }else if(this.status == 503){
             console.log("Error! status "+ this.status);
@@ -107,7 +107,8 @@
         xhttp.open("GET", "/getcomments", true);
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-            makeHtml(this.responseText);
+            var html = makeHtml(this.responseText);
+            $("#list_comments").append(html);
           }else if(this.status == 503){
             serverFall();
           }
@@ -124,12 +125,12 @@
         comments = JSON.parse(comments);
         var len = comments.length;
         $("#list_comments").empty()
-        
+      var html = "<br>";
        for(var i = 0; i < len; i++){
           var comment = comments[i].comment_text;
           var id = "comment"+ comments[i].id;
           var tooltip = "data-toggle=\"tooltip\" data-placement=\"left\" title=\"click e espere um momento para o arquivo ser gerado e click novamente\"";
-          var html = 
+          html += 
             "<div class=\"row\">"+
               "<div class=\"col-10\">"+
                 "<span id=\""+id+ "\">"+comment+"</span>"+
@@ -138,9 +139,8 @@
                 "<input "+tooltip+" onclick=\"saySomething("+id+");\" value=\"Ouvir\" class=\"btn-ouvir\"  type=\"submit\">"+   
               "</div>"+
             "</div></br>";
-            $("#list_comments").append(html);
         }
- 
+        return html;
       }//end  makeHtml
 
       /**
