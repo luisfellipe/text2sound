@@ -24,6 +24,9 @@
     "url": "https://github.com/luisfellipe/text2sound/issues"
   },
   "homepage": "https://github.com/luisfellipe/text2sound#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "ejs": "^3.1.6",

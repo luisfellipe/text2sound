@@ -28,7 +28,7 @@ npm start
 ```http://localhost:8082```.
 
 #### Mais Configurações
-A porta de acesso pode ser alterada no arquivo `./env.js`
+A porta de acesso pode ser alterada no arquivo `./src/env.js`
  ```node
 const env = {
     port:8082
@@ -36,7 +36,7 @@ const env = {
 module.exports = env;
 ```
 O text2sound Utiliza banco de dados MySQL Remoto
-As configurações para acesso ao banco de dados estão no arquivo `./db/config.js`.
+As configurações para acesso ao banco de dados estão no arquivo `./src/db/config.js`.
 ````node
 // mysql://b55cc638e160a7:90e79e27@us-cdbr-east-03.cleardb.com/heroku_a249664013e9f5c?reconnect=true
 const HOST =  "us-cdbr-east-03.cleardb.com";

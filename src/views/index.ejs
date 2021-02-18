@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="#">
+    <link rel="shortcut icon" href="favicon.png">
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <!-- Bootstrap CSS -->
@@ -26,7 +26,7 @@
           <div id="comment_area">
             <form id="submit" >
               <div><!--Inserir Comentario-->
-                <label id="lbcomment" for="comment"><b>Comentário</b></label></br>
+                <label class="comment_title" for="comment">Comentário</label></br>
                 <textarea
                 id="comment_text" 
                 name="comment_text" 
@@ -44,9 +44,8 @@
         <!--Lista de comentarios-->
           <div  class="col-md-6">
             <div id="comments">
-                <label id="title"><b>Comentários</b></label>
+                <p class="comment_title">Comentários</p>
                 <div id="list_comments" class="container">
-
                 </div>  
             </div> <!--Fim list_comments--> 
           </div>  <!--Fim column-->
