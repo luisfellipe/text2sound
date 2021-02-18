@@ -89,9 +89,6 @@
           if (this.readyState == 4 && this.status == 200) {
               getComments();
               console.log("OK! status "+ this.status);
-          }else if(this.status == 503){
-            console.log("Error! status "+ this.status);
-            servidorCaiu();
           }
         };
         xhttp.send(JSON.stringify(data));
@@ -109,8 +106,6 @@
           if (this.readyState == 4 && this.status == 200) {
             var html = makeHtml(this.responseText);
             $("#list_comments").append(html);
-          }else if(this.status == 503){
-            serverFall();
           }
         };
       xhttp.send();
@@ -158,17 +153,10 @@
         xhttp.onreadystatechange = function() {
           if (this.readyState == xhttp.DONE && this.status == 200) {
             console.log("Ok! "+ this.status);
-          }else if(this.status == 503){
-            serverFall();
           }
         };
         xhttp.send(JSON.stringify(data));
       }//end saySomething
-
-      function serverFall(){
-        console.log("Servidor não respondeu!");
-        alert("Servidor não respondeu!");
-      }
     </script>
 
   </body>

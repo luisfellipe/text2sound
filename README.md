@@ -71,27 +71,27 @@ O ibm-watson Text to Speech plano lite, é gratis e limitado a 10000 cacracteres
 
 #### Tutorial Rápido
 
-1. Crie ou faça Login na sua conta IBM Cloud <br>
+1. Crie ou faça Login na sua conta IBM Cloud: <br>
 ![Tela de Login](./assets/1.png)
 
 <br>
 
-2. No Campo de busca difite `Text To Speech` e selecione a opção que aparecer <br>
+2. No Campo de busca digite `Text To Speech` e selecione a opção que aparecer: <br>
 ![Interface do text2sound](./assets/2.png)
 
 <br>
 
-3. Escolha o Servidor <br>
+3. Escolha o Servidor: <br>
 ![Interface do text2sound](./assets/3.png)
 
 <br>
 
-4. Se preferir renomeie o serviço <br>
+4. Se preferir renomeie o serviço: <br>
 ![Interface do text2sound](./assets/4.png)
 
 <br>
 
-5. Copie as chaves e a URL necessaria para acessar o TTS 
+5. Copie as chaves e a URL necessaria para acessar o TTS:
 ![Interface do text2sound](./assets/5.png)
 
 <br>
