@@ -20,11 +20,10 @@ cd text2sound/src
 npm install
 ````
 3. Apos instaladas as dependências execute a aplicação
- <h5>
+
 ````shell 
 npm start
 ````
-</h5> 
 4. No navegador acesse a aplicação pelo url
 ```http://localhost:8082```.
 
