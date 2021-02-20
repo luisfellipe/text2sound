@@ -118,19 +118,20 @@
         console.log(comments);
         comments = JSON.parse(comments);
         var len = comments.length;
-        $("#list_comments").empty()
+        $("#list_comments").empty()//clear old comments
       var html = "<br>";
        for(var i = 0; i < len; i++){
           var comment = comments[i].comment_text;
           var id = "comment"+ comments[i].id;
-          var tooltip = "data-toggle=\"tooltip\" data-placement=\"left\" title=\"click e espere um momento para o arquivo ser gerado e click novamente\"";
+          var ttmsg = "click e espere um momento para o texto ser reproduzido!";
+          var tooltip = "data-toggle=\"tooltip\" data-placement=\"left\" title=\""+ttmsg+"\"";
           html += 
             "<div class=\"row\">"+
               "<div class=\"col-10\">"+
                 "<span id=\""+id+ "\">"+comment+"</span>"+
               "</div>"+
               "<div class=\"col-2\">"+
-                "<input "+tooltip+" onclick=\"saySomething("+id+");\" value=\"Ouvir\" class=\"btn-ouvir\"  type=\"submit\">"+   
+                "<input "+tooltip+" onclick=\"saySomething("+id+");\" value=\"Ouvir\" class=\"btn-ouvir\" type=\"submit\">"+   
               "</div>"+
             "</div></br>";
         }
