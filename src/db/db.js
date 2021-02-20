@@ -1,10 +1,12 @@
 const config = require("./config");
 const mysql = require('mysql2');
+const e = require("express");
 
 /**
  * get a coonection from db
  */
 function getConnection(){
+  if(global.connet) return conn;
   let conn = mysql.createConnection(config);
   conn.connect(
     function(err) {
@@ -23,10 +25,17 @@ function getConnection(){
    */
   conn.on('error', function(err) {
     console.log('db error', err);
-    if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
-      getConnection();                        
-    } else throw err;                                  
-  });
+      if (err) {
+        if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+            console.error('Database connection was closed.')
+        } else if (err.code === 'ER_CON_COUNT_ERROR') {
+            console.error('Database has too many connections.')
+            connections.destroy();
+        }else if (err.code === 'ECONNREFUSED') {
+            console.error('Database connection was refused.');
+        }
+      } else throw err;                    
+  });                                  
   return conn;
 }
 
@@ -34,13 +43,17 @@ function getConnection(){
   * delete old comments
   */
 function deleteSome(){
-  const sql = "DELETE FROM comments WHERE id > 0 ORDER BY id ASC LIMIT 5;";
+  const sql = "DELETE FROM comments WHERE id > 0 ORDER BY id ASC LIMIT 13;";
+  //let conn = getConnection();
   let conn = getConnection();
   conn.query(sql, function (err, result) {
-    if (err) throw err;
+    if (err){
+      console.error(err);
+    }
     console.log("records deleted");
+    conn.destroy();
   });
-  conn.end();
+  
 }
  
 /**
@@ -48,23 +61,25 @@ function deleteSome(){
  * @param {Response} res 
  */
 function get_all(res){
+  //let conn = getConnection();
   let conn = getConnection();
   conn.query('SELECT * FROM comments', function(err, results, fields){
     if (err) throw err;
     else{
-      var rows = [];
       var len = results.length;
-      if(len > 6){
+      if(len > 14){
         deleteSome();
       }
+      var rows = [];
       for(var i = 0; i < len; i++){
         var row = JSON.parse(JSON.stringify(results[i]));
         rows.push(row);
       }
+      conn.destroy();
       return res.send(rows);
     }
   });
-  conn.end(); 
+ 
 }
  /**
   * 
@@ -76,8 +91,8 @@ function insert(comment){
   conn.query(sql, function (err, result) {
     if (err) throw err;
     console.log("1 record inserted");
+    conn.destroy();
   });
-  conn.end();
  }
  //export public db functions
  module.exports = {get_all, insert}
