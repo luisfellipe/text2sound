@@ -19,12 +19,12 @@ git clone https://github.com/luisfellipe/text2sound.git
 cd text2sound/src
 npm install
 ````
-3. Apos instaladas as dependências execute a aplicação
+3. Apos instaladas as dependências ainda na pasta `text2sound/src` execute a aplicação
 
 ````shell 
 npm start
 ````
-4. No navegador acesse a aplicação pelo url
+4. No navegador acesse a aplicação pela url
 ```http://localhost:8082```.
 
 #### Mais Configurações
@@ -37,12 +37,13 @@ module.exports = env;
 ```
 O text2sound Utiliza banco de dados MySQL Remoto
 As configurações para acesso ao banco de dados estão no arquivo `./src/db/config.js`.
+Para mudar para um novo banco de dados
 ````node
-// mysql://b55cc638e160a7:90e79e27@us-cdbr-east-03.cleardb.com/heroku_a249664013e9f5c?reconnect=true
-const HOST =  "us-cdbr-east-03.cleardb.com";
-const USER =  "b55cc638e160a7";
-const PASSWORD = "90e79e27";
-const DATA_BASE = "heroku_a249664013e9f5c";
+
+const HOST =  {novo_host};
+const USER =  " {novo_user};
+const PASSWORD =  {novo_password};
+const DATA_BASE =  {novo_database_name};
 const PORT = 3306;
 
 const config = {
@@ -54,24 +55,13 @@ const config = {
 }
 module.exports = config;
 ````
-
-Banco de dados utilizado:
-
-````sql
-
-CREATE DATABASE IF NOT EXISTS db;
-
-CREATE TABLE IF NOT EXISTS comments(
-    id INT NOT NULL auto_increment PRIMARY KEY,
-    comment_text VARCHAR(250)
-);
-````
+Ao mudar o banco de dados as tabelas são automaticamente criadas.
 
 O ibm-watson Text to Speech plano lite, é gratis e limitado a 10000 cacracteres. Caso a api não responda mais, será necessario criar um novo plano lite.
 
 #### Tutorial Rápido
-
-1. Crie ou faça Login na sua conta IBM Cloud: <br>
+Para criar um sovo serviço de `Text to Speech` é necessário logar na IBM Cloud <https://cloud.ibm.com/login>
+1. Crie ou faça Login no IBM Cloud; <br>
 ![Tela de Login](./assets/1.png)
 
 <br>
