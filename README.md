@@ -28,7 +28,7 @@ npm start
 ```http://localhost:8082```.
 
 #### Mais Configurações
-A porta de acesso pode ser alterada no arquivo `./src/env.js`
+A porta de acesso pode ser alterada no arquivo `./src/main/env.js`
  ```node
 const env = {
     port:8082
@@ -36,7 +36,7 @@ const env = {
 module.exports = env;
 ```
 O text2sound Utiliza banco de dados MySQL Remoto
-As configurações para acesso ao banco de dados estão no arquivo `./src/db/config.js`.
+As configurações para acesso ao banco de dados estão no arquivo `./src/main/db/config.js`.
 Para mudar para um novo banco de dados
 ````node
 
@@ -89,7 +89,7 @@ Para criar um sovo serviço de `Text to Speech` é necessário logar na IBM Clou
 Ao ativar o servico sera gerada uma `url` e uma `apikey` nas credenciais do serviço:
 
 
-no arquivo `./src/speech.js` substitua as informações antigas pelas novas:
+no arquivo `./src/main/speech.js` substitua as informações antigas pelas novas:
 
 ```` node
 // api access key
