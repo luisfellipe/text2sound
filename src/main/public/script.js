@@ -95,7 +95,7 @@
    xhttp.onreadystatechange = function() {
      if (this.readyState == xhttp.DONE && this.status == 200) {
        console.log("Ok! "+ this.status);
-     }else if(this.readyState == xhttp.DONE ){
+     }else if(this.readyState == xhttp.DONE && this.status == 500){
       alert(`Não foi possivel reproduzir o audio!\n Error: ${this.status} ${this.statusText}`)
      }
    };

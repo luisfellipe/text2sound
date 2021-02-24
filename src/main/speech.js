@@ -7,9 +7,9 @@ const TextToSpeechV1 = require('ibm-watson/text-to-speech/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
 
 // api access key
-const key = '1QbJ2ni3XCPnfZ8q4n-zV3g5iBwXYN2QUKdqVW4TpHuu';
+const key = '0jNqE8-l8CWljql4rFa-80GqO6buxXNC81H4-vH4TNEU';
 // api acess url
-const url = 'https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/a942a5b4-6bfc-484f-8ea3-7414f501bb80';
+const url = 'https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/3673787e-7e1f-45e2-beb3-3a01b9fddad9';
 
 /**
  * textToSpeech 
@@ -23,9 +23,14 @@ var textToSpeech = new TextToSpeechV1({
   disableSslVerification: true,
 });
 
+/**
+ * Reproduz o comentário em aúdio
+ * @param {string} comment 
+ * @param {Response} res 
+ */
 function speak(comment, res){
   var params = {
-    text: comment,// texto capturado direto da pagina
+    text: comment,// texto capturado direto da página
     voice: "pt-BR_IsabelaV3Voice",
     accept:'audio/wav'
   };
@@ -43,7 +48,10 @@ function speak(comment, res){
     .then(() => {
       const filePath = path.join(__dirname, env.audio.file);
       sound.play(filePath, (err) => {
-        if(err) console.log("cannot play voice!");
+        if(err){
+          console.log("Impossivel reproduzir aúdio!");
+          return res.status(500).send(err);
+        } 
       });
     })
     .then(()=>{
@@ -54,10 +62,11 @@ function speak(comment, res){
       } catch (error) {
         console.log("Nenhum Arquivo para deletar");
       }
+      return res.status(200).send("Aúdio reproduzido com sucesso!!");
     })
     .catch(err => {
       console.log(err);
-      res.status(500).send(err);
+      return res.status(500).send(err);
     });
 }
 
