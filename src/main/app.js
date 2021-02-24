@@ -6,7 +6,7 @@ const app = express();
 
 const {modelComment} = require("./db/db");
 const env = require('./env'); 
-const {textToSpeech} = require("./speech");
+const speech = require("./speech");
 
 
 const bodyParser = require('body-parser');
@@ -55,43 +55,7 @@ app.get('/getcomments', function(req, res){
 
  
 app.post('/ouvir', function(req, res){
-
-  var params = {
-    text: req.body.text,// texto capturado direto da pagina
-    voice: "pt-BR_IsabelaV3Voice",
-    accept:'audio/wav'
-  };
- 
-  textToSpeech.synthesize(params)
-    .then(response => {
-      const audio = response.result;
-      return textToSpeech.repairWavHeaderStream(audio);
-    })
-    .then(buffer => {
-      const filePath = path.join(__dirname, env.audio.file);
-      fs.writeFileSync(filePath, buffer);
-      console.log('audio ok! ');
-      
-    })
-    .then(() => {
-      const filePath = path.join(__dirname, env.audio.file);
-      sound.play(filePath, (err) => {
-        if(err) console.log("cannot play voice!");
-      });
-    })
-    .then(()=>{
-      // deleta arquivo de audio apos reprodução
-      try {
-        fs.unlinkSync(env.audio.file);
-        console.log("Arquivo de audio deletado");
-      } catch (error) {
-        console.log("Nenhum Arquivo para deletar");
-      }
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).send(err);
-    });
+  speech.speak(req.body.text, req);
 });
 
 
