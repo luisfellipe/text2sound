@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "nodemon server.js",
+    "starts": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/luisfellipe/text2sound#readme",
   "devDependencies": {
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.7"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -34,6 +34,7 @@
     "express-validator": "^6.9.2",
     "ibm-watson": "^6.0.2",
     "mysql2": "^2.2.5",
-    "play-sound": "^1.1.3"
+    "play-sound": "^1.1.3",
+    "sequelize": "^6.5.0"
   }
 }
