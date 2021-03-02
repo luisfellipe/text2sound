@@ -2,13 +2,21 @@
     //coloca cursor na posicção inicial do textarea
     var textarea = document.getElementById('comment_text');
     textarea.value = '';
-       //evento disparado ao clicar no button cadastrar
-   $("#btn-cadastrar").on("click",function(event) {
-     event.preventDefault();
-     var comment = document.getElementById("comment_text").value;
-     setComment(comment);//adiciona comentário
-   });
+    //evento disparado ao clicar no button cadastrar
+    $("#btn-cadastrar").on("click",function(event) {
+      event.preventDefault();
+      var comment = document.getElementById("comment_text").value;
+      setComment(comment);//adiciona comentário
+    });
  });//Fim jquery
+
+ function getXMLHttpRequest(){
+  if (window.XMLHttpRequest) {
+    return new XMLHttpRequest();
+  } else {
+    return new ActiveXObject("Microsoft.XMLHTTP");
+ }
+ }
 
  /**
   *  adiciona comentario
@@ -23,8 +31,8 @@
        alert("Campo de comentários não pode estar vazio!");
        return;
    };
-   var data = {"comment_text": comment};
-   var xhttp = new XMLHttpRequest();
+   var data = {"text": comment};
+   var xhttp = getXMLHttpRequest();
    xhttp.open("POST", "/post", true);
    xhttp.timeout = 10000;
    xhttp.dataType = "json";
@@ -32,9 +40,9 @@
    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
    xhttp.onreadystatechange = function() {
      if (this.readyState == 4 && this.status == 200) {
-         getComments();// busca todos os comentários e atualiza a página
-         console.log("OK! status "+ this.status);
-     }else if(this.status == 500){
+         getComments();// busca todos os comentários e atualiza a area de comentários
+         console.log(`OK! status ${this.status}\n${this.responseText}`);
+     }else if(this.readyState == 4 && this.status == 500){
       alert(`Erro Inesperado ${this.responseText}`);
      }
    };
@@ -46,12 +54,12 @@
   * atualiza comentarios na pagina
   */ 
  function getComments(){ 
-   var xhttp = new XMLHttpRequest();
+   var xhttp = getXMLHttpRequest();
    xhttp.open("GET", "/getcomments", true);
    xhttp.onreadystatechange = function() {
      if (this.readyState == 4 && this.status == 200) {
        console.log(this.responseText);
-       var html = makeHtml(this.responseText);
+       var html = makeHtml(JSON.parse(this.responseText));
      }
    };
    xhttp.send();
@@ -61,14 +69,13 @@
   * cria html de apresentação dos comentarios na página
   */  
  function makeHtml(comments){
-  comments = JSON.parse(comments);
-  var html_comments = "";
-  comments.forEach(comment => {
+  let html_comments = [];
+  comments.forEach(function(comment){
     var commentid = `comment_${comment.id}`
-    html_comments +=
+    html_comments.push(
      `<div class="row">
         <div class="col-10">
-            <span id=\"${commentid}\">${comment.comment_text }</span>
+            <span id=\"${commentid}\">${comment.text }</span>
         </div>
         <div class="col-2">
             <input data-toggle="tooltip" data-placement="left" 
@@ -78,15 +85,21 @@
         </div>
       </div>
       </br>`
-      });
-      $("#list_comments").empty();
-      $("#list_comments").html(html_comments);
- }
+    );
+  });
+   
+  $("#list_comments").empty();//limpa lista de comentários
+  html_comments.reverse();
+  //readiciona comentários
+  html_comments.forEach(html => {
+    $("#list_comments").append(html);
+  })
+ }// Fim makeHtml
 
  function saySomething(comment){
     comment = comment.innerHTML;
    var data = {'text':comment};
-   var xhttp = new XMLHttpRequest();
+   var xhttp = getXMLHttpRequest();
    xhttp.open("POST", "/ouvir", true);
    xhttp.timeout = 10000;
    xhttp.dataType = "json";
